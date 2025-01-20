@@ -28,4 +28,14 @@ const addTransactions = async (req, res, next) => {
   }
 };
 
-export { addTransactions };
+const deleteTransaction = async (req, res, next) => {
+  const id = req.params.id;
+
+  const response = await Transaction.findByIdAndDelete(id);
+
+  return res.json(
+    new ApiResponse("Transaction deleted successfully", 200, response)
+  );
+};
+
+export { addTransactions, deleteTransaction };

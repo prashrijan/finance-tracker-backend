@@ -1,9 +1,6 @@
 import express from "express";
+import { addTransactions } from "../controllers/transactionController.js";
 
 export const transactionRouter = express.Router();
 
-transactionRouter.get("/", (req, res, next) => {
-  res.json({
-    message: "Transaction Route is live",
-  });
-});
+transactionRouter.route("/add").post(addTransactions);

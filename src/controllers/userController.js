@@ -1,5 +1,4 @@
 import { User } from "../models/userModel.js";
-import ApiError from "../utils/ApiError.js";
 import ApiResponse from "../utils/ApiResponse.js";
 
 const registerUser = async (req, res, next) => {
@@ -7,7 +6,9 @@ const registerUser = async (req, res, next) => {
     const { email, userName, password } = req.body;
 
     if ([email, userName, password].some((input) => input?.trim() === "")) {
-      throw new ApiError(404, "All fields are required");
+      return res
+        .status(400)
+        .json(new ApiResponse("All fields are required", 400));
     }
 
     const existedUser = await User.findOne({
@@ -15,14 +16,14 @@ const registerUser = async (req, res, next) => {
     });
 
     if (existedUser) {
-      res.json(
-        new ApiError(
-          409,
-          "",
-          "User with this email or username already exists."
-        )
-      );
-      return;
+      return res
+        .status(409)
+        .json(
+          new ApiResponse(
+            "User with this email or username already exists.",
+            409
+          )
+        );
     }
 
     const user = await User.create({
@@ -35,9 +36,12 @@ const registerUser = async (req, res, next) => {
 
     return res
       .status(201)
-      .json(new ApiResponse("User Created Successfully", 200, createdUser));
+      .json(new ApiResponse("User created successfully", 201, createdUser));
   } catch (error) {
-    res.json(new ApiError(404, "", ["Error while creating the user", error]));
+    console.error(error);
+    return res
+      .status(500)
+      .json(new ApiResponse("Error while creating the user", 500, error));
   }
   next();
 };
@@ -47,23 +51,20 @@ const loginUser = async (req, res, next) => {
     const { email, password } = req.body;
 
     if (!email || !password) {
-      res.json(new ApiError(401, "", "Please provide both fields."));
-      return;
+      return res
+        .status(400)
+        .json(new ApiResponse("Please provide both email and password", 400));
     }
 
-    const user = await User.findOne({
-      email,
-    });
+    const user = await User.findOne({ email });
 
     if (!user) {
-      res.json(new ApiError("404", "", "User not found."));
-      return;
+      return res.status(404).json(new ApiResponse("User not found", 404));
     }
 
     const isPasswordValid = await user.isPasswordCorrect(password);
     if (!isPasswordValid) {
-      res.json(new ApiError(404, "", "Invalid Password"));
-      return;
+      return res.status(401).json(new ApiResponse("Invalid password", 401));
     }
 
     const accessToken = await user.generateAccessToken();
@@ -72,10 +73,12 @@ const loginUser = async (req, res, next) => {
       accessToken,
     };
 
-    return res.status(201).json(new ApiResponse("Login Successful", 200, data));
+    return res.status(200).json(new ApiResponse("Login successful", 200, data));
   } catch (error) {
-    console.log(error);
-    res.json(new ApiError(404, "", "Error while login the user"));
+    console.error(error);
+    return res
+      .status(500)
+      .json(new ApiResponse("Error while logging in the user", 500, error));
   }
 };
 

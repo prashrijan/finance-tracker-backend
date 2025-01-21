@@ -20,5 +20,16 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3RAdGVzdC5j
 
 ###
 
-DELETE {{endpoint}}/transactions/delete/678ef5b5b722058ef476ef4e
+DELETE {{endpoint}}/transactions/delete/678f19a7cad3b240c4622f3d
 Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3RAdGVzdC5jb20iLCJ1c2VyTmFtZSI6InRlc3QiLCJpYXQiOjE3Mzc0MjA0MDUsImV4cCI6MTczNzUwNjgwNX0.uvJuA5pvGOwUJGeqwvt4zoIcM-UhIUyYIQ_0OMVTgIE
+
+###
+DELETE {{endpoint}}/transactions/delete
+Content-Type: application/json
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3RAdGVzdC5jb20iLCJ1c2VyTmFtZSI6InRlc3QiLCJpYXQiOjE3Mzc0MjA0MDUsImV4cCI6MTczNzUwNjgwNX0.uvJuA5pvGOwUJGeqwvt4zoIcM-UhIUyYIQ_0OMVTgIE
+
+{
+    "transactions" : [
+        "678f19aacad3b240c4622f40"
+    ]
+}

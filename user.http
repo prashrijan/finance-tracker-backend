@@ -13,9 +13,9 @@ POST {{endpoint}}/users/register
 Content-Type: application/json
 
 {
-    "email" : "admin@gmail.com",
-    "userName" : "admin2",
-    "password" : "admin"
+    "email" : "test@test.com",
+    "userName" : "test",
+    "password" : "test"
 }
 
 ###
@@ -24,6 +24,6 @@ POST {{endpoint}}/users/login
 Content-Type: application/json
 
 {
-    "email" : "admin@gmail.com",
-    "password": "admin"
+    "email" : "test@test.com",
+    "password": "test"
 }

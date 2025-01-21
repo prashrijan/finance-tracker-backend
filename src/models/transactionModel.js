@@ -2,6 +2,10 @@ import mongoose, { Schema } from "mongoose";
 
 const transactionSchema = new Schema(
   {
+    userId: {
+      type: Schema.Types.ObjectId,
+      ref: "User",
+    },
     type: {
       type: String,
       enum: ["Income", "Expense"],
@@ -23,4 +27,4 @@ const transactionSchema = new Schema(
   { timestamps: true }
 );
 
-export const Transaction = new mongoose.model("transaction", transactionSchema);
+export const Transaction = new mongoose.model("Transaction", transactionSchema);

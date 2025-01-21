@@ -2,21 +2,6 @@ import { User } from "../models/userModel.js";
 import ApiError from "../utils/ApiError.js";
 import ApiResponse from "../utils/ApiResponse.js";
 
-const showAllUsers = async (req, res, next) => {
-  try {
-    const users = await User.find({});
-
-    if (!users) {
-      res.json(new ApiError(404, "", "No users."));
-    }
-
-    return res.status(201).json(new ApiResponse("Users Found", 200, users));
-  } catch (error) {
-    console.log(error);
-    return res.json(new ApiError(404, "", error));
-  }
-};
-
 const registerUser = async (req, res, next) => {
   try {
     const { email, userName, password } = req.body;
@@ -81,11 +66,17 @@ const loginUser = async (req, res, next) => {
       return;
     }
 
-    return res.status(201).json(new ApiResponse("Login Successful", 200));
+    const accessToken = await user.generateAccessToken();
+
+    const data = {
+      accessToken,
+    };
+
+    return res.status(201).json(new ApiResponse("Login Successful", 200, data));
   } catch (error) {
     console.log(error);
     res.json(new ApiError(404, "", "Error while login the user"));
   }
 };
 
-export { registerUser, loginUser, showAllUsers };
+export { registerUser, loginUser };

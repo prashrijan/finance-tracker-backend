@@ -1,16 +1,24 @@
 @endpoint = http://localhost:8080/api/v1
 
+
+GET {{endpoint}}/transactions
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3RAdGVzdC5jb20iLCJ1c2VyTmFtZSI6InRlc3QiLCJpYXQiOjE3Mzc0MjA0MDUsImV4cCI6MTczNzUwNjgwNX0.uvJuA5pvGOwUJGeqwvt4zoIcM-UhIUyYIQ_0OMVTgIE
+
+###
+
 POST {{endpoint}}/transactions/add
 Content-Type: application/json
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3RAdGVzdC5jb20iLCJ1c2VyTmFtZSI6InRlc3QiLCJpYXQiOjE3Mzc0MjA0MDUsImV4cCI6MTczNzUwNjgwNX0.uvJuA5pvGOwUJGeqwvt4zoIcM-UhIUyYIQ_0OMVTgIE
 
 {
     "type" : "Income",
-    "amount" : 1000,
-    "date" : "2025-1-12",
-    "description" : "Coles"
+    "amount" : 1500,
+    "date" : "2025-1-11",
+    "description" : "Charlis Cafe"
 }
 
 
 ###
 
-DELETE {{endpoint}}/transactions/delete/678e47bf84f62458df049fb5
+DELETE {{endpoint}}/transactions/delete/678ef5b5b722058ef476ef4e
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3RAdGVzdC5jb20iLCJ1c2VyTmFtZSI6InRlc3QiLCJpYXQiOjE3Mzc0MjA0MDUsImV4cCI6MTczNzUwNjgwNX0.uvJuA5pvGOwUJGeqwvt4zoIcM-UhIUyYIQ_0OMVTgIE

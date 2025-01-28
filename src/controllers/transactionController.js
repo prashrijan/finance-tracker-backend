@@ -1,30 +1,9 @@
 import { Transaction } from "../models/transactionModel.js";
 import ApiResponse from "../utils/ApiResponse.js";
-import jwt from "jsonwebtoken";
-import { User } from "../models/userModel.js";
 
+// adding transactions
 const addTransactions = async (req, res) => {
   try {
-    // Token Validation
-    const token = req.headers.authorization;
-    const decoded = jwt.verify(token, process.env.JWT_SECRET);
-
-    if (!decoded) {
-      return res
-        .status(401)
-        .json(new ApiResponse("Unauthorized access. Invalid token.", 401));
-    }
-
-    // Find the user
-    const userData = await User.findOne({
-      email: decoded.email,
-      userName: decoded.userName,
-    });
-
-    if (!userData) {
-      return res.status(404).json(new ApiResponse("User not found.", 404));
-    }
-
     const { type, amount, date, description } = req.body;
 
     if (!type || !amount || !date || !description) {
@@ -34,7 +13,7 @@ const addTransactions = async (req, res) => {
     }
 
     const transaction = await Transaction.create({
-      userId: userData._id,
+      userId: req.userData._id,
       type,
       amount,
       date,
@@ -58,32 +37,14 @@ const addTransactions = async (req, res) => {
   }
 };
 
+// deleting single transaction
 const deleteTransaction = async (req, res) => {
   try {
-    const token = req.headers.authorization;
-    const decoded = jwt.verify(token, process.env.JWT_SECRET);
-
-    if (!decoded) {
-      return res
-        .status(401)
-        .json(new ApiResponse("Unauthorized access. Invalid token.", 401));
-    }
-
-    // Find the user
-    const userData = await User.findOne({
-      email: decoded.email,
-      userName: decoded.userName,
-    });
-
-    if (!userData) {
-      return res.status(404).json(new ApiResponse("User not found.", 404));
-    }
-
     const id = req.params.id;
 
     const transactionData = await Transaction.findOneAndDelete({
       _id: id,
-      userId: userData._id,
+      userId: req.userData._id,
     });
 
     if (!transactionData) {
@@ -103,28 +64,12 @@ const deleteTransaction = async (req, res) => {
   }
 };
 
+// getting transactions
 const getTransactions = async (req, res) => {
   try {
-    const token = req.headers.authorization;
-    const decoded = jwt.verify(token, process.env.JWT_SECRET);
-
-    if (!decoded) {
-      return res
-        .status(401)
-        .json(new ApiResponse("Unauthorized access. Invalid token.", 401));
-    }
-
-    // Find the user
-    const userData = await User.findOne({
-      email: decoded.email,
-      userName: decoded.userName,
+    const transactionData = await Transaction.find({
+      userId: req.userData._id,
     });
-
-    if (!userData) {
-      return res.status(404).json(new ApiResponse("Unauthorized user.", 404));
-    }
-
-    const transactionData = await Transaction.find({ userId: userData._id });
 
     if (transactionData.length === 0) {
       return res
@@ -149,31 +94,14 @@ const getTransactions = async (req, res) => {
   }
 };
 
+// delete all transactions
 const deleteAllTransaction = async (req, res) => {
   try {
     const transactionsIds = req.body.transactions;
 
-    const token = req.headers.authorization;
-    const decoded = jwt.verify(token, process.env.JWT_SECRET);
-
-    if (!decoded) {
-      return res
-        .status(401)
-        .json(new ApiResponse("Unauthorized access. Invalid token.", 401));
-    }
-
-    const userData = await User.findOne({
-      email: decoded.email,
-      userName: decoded.userName,
-    });
-
-    if (!userData) {
-      return res.status(404).json(new ApiResponse("Unauthorized user.", 404));
-    }
-
     const response = await Transaction.deleteMany({
       _id: { $in: transactionsIds },
-      userId: userData._id,
+      userId: req.userData._id,
     });
 
     if (!response.deletedCount) {

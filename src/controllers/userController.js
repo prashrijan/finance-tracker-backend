@@ -1,7 +1,7 @@
 import { User } from "../models/userModel.js";
 import ApiResponse from "../utils/ApiResponse.js";
 
-const registerUser = async (req, res, next) => {
+const registerUser = async (req, res) => {
   try {
     const { email, userName, password } = req.body;
 
@@ -43,10 +43,9 @@ const registerUser = async (req, res, next) => {
       .status(500)
       .json(new ApiResponse("Error while creating the user", 500, error));
   }
-  next();
 };
 
-const loginUser = async (req, res, next) => {
+const loginUser = async (req, res) => {
   try {
     const { email, password } = req.body;
 
@@ -71,6 +70,7 @@ const loginUser = async (req, res, next) => {
 
     const data = {
       accessToken,
+      user,
     };
 
     return res.status(200).json(new ApiResponse("Login successful", 200, data));
@@ -82,4 +82,20 @@ const loginUser = async (req, res, next) => {
   }
 };
 
-export { registerUser, loginUser };
+const getUser = async (req, res) => {
+  const userData = req.userData;
+
+  if (!userData) {
+    return res.status(404).json({
+      status: "Failed",
+      message: "User not found",
+    });
+  }
+
+  return res.status(200).json({
+    status: 201,
+    message: "User found",
+    userData,
+  });
+};
+export { registerUser, loginUser, getUser };

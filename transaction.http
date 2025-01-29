@@ -8,11 +8,11 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3RAdGVzdC5j
 
 POST {{endpoint}}/transactions/add
 Content-Type: application/json
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3RAdGVzdC5jb20iLCJ1c2VyTmFtZSI6InRlc3QiLCJpYXQiOjE3MzgwMTgyMjAsImV4cCI6MTczODEwNDYyMH0.4jpE2uWoWGCeG6DgP2UPR1hiNsp0rlLW-JwPx8ANZks
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InNocmVzdGhhcHJhc2hyaWphbkBnbWFpbC5jb20iLCJ1c2VyTmFtZSI6InByYXNocmlqYW4iLCJpYXQiOjE3MzgxMjUxNjgsImV4cCI6MTczODIxMTU2OH0.4lqOVzjTphnywd914XCyscMiqAhZrtaRHnan1tyOA00
 
 {
-    "type" : "Income",
-    "amount" : 1500,
+    "type" : "Expense",
+    "amount" : 3000,
     "date" : "2025-1-11",
     "description" : "Charlis Cafe"
 }
@@ -32,4 +32,14 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3RAdGVzdC5j
     "transactions" : [
         "678f19aacad3b240c4622f40"
     ]
+}
+
+###
+
+PATCH {{endpoint}}/transactions/update/67984559834f680a2adc95d6
+Content-Type: application/json
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3RAdGVzdC5jb20iLCJ1c2VyTmFtZSI6InRlc3QiLCJpYXQiOjE3MzgwMTgyMjAsImV4cCI6MTczODEwNDYyMH0.4jpE2uWoWGCeG6DgP2UPR1hiNsp0rlLW-JwPx8ANZks
+
+{
+    "amount" : 2000 
 }

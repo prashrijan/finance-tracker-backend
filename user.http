@@ -1,6 +1,7 @@
 @endpoint = http://localhost:8080/api/v1
 
 GET  {{endpoint}}/users
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3RAdGVzdC5jb20iLCJ1c2VyTmFtZSI6InRlc3QiLCJpYXQiOjE3MzgwMjU1NTcsImV4cCI6MTczODExMTk1N30.slvza58EzuWQ1Vufqn1nshTi4luyP2EjHbiVUaoWtAM
 
 
 ###
@@ -9,7 +10,7 @@ POST {{endpoint}}/users/register
 Content-Type: application/json
 
 {
-    "email" : "test@test.com",
+    "email" : "shresthaprashrijan@gmail.com",
     "userName" : "test",
     "password" : "test"
 }
@@ -20,6 +21,6 @@ POST {{endpoint}}/users/login
 Content-Type: application/json
 
 {
-    "email" : "test@test.com",
-    "password": "test"
+    "email" : "shresthaprashrijan@gmail.com",
+    "password": "1234"
 }

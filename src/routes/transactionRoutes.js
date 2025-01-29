@@ -4,6 +4,7 @@ import {
   deleteTransaction,
   getTransactions,
   deleteAllTransaction,
+  updateTransaction,
 } from "../controllers/transactionController.js";
 import { authenticateUser } from "../middleware/authenticateUser.js";
 
@@ -21,3 +22,7 @@ transactionRouter
   .delete(authenticateUser, deleteAllTransaction);
 
 transactionRouter.route("/").get(authenticateUser, getTransactions);
+
+transactionRouter
+  .route("/update/:id")
+  .patch(authenticateUser, updateTransaction);

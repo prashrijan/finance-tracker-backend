@@ -132,9 +132,53 @@ const deleteAllTransaction = async (req, res) => {
   }
 };
 
+// updating transaction
+const updateTransaction = async (req, res) => {
+  try {
+    const transactionId = req.params.id;
+    const update = req.body;
+    const transaction = await Transaction.findByIdAndUpdate(
+      {
+        _id: transactionId,
+        userId: req.userData._id,
+      },
+      update,
+      {
+        new: true,
+      }
+    );
+
+    if (!transaction) {
+      return res
+        .status(400)
+        .json(
+          new ApiResponse("There was an error updating the transaction.", 400)
+        );
+    }
+
+    return res
+      .status(201)
+      .json(
+        new ApiResponse("Transaction updated successfully.", 201, transaction)
+      );
+  } catch (error) {
+    console.log(error);
+    return res
+      .status(500)
+      .json(
+        new ApiResponse(
+          "An internal server error occurred while updating transactions.",
+          500,
+          error
+        )
+      );
+  }
+};
+
 export {
   addTransactions,
   deleteTransaction,
   getTransactions,
   deleteAllTransaction,
+  updateTransaction,
 };

@@ -1,5 +1,6 @@
 import { User } from "../models/userModel.js";
 import ApiResponse from "../utils/ApiResponse.js";
+import { isPasswordStrong } from "../utils/passwordStrength.js";
 
 const registerUser = async (req, res) => {
   try {
@@ -9,6 +10,19 @@ const registerUser = async (req, res) => {
       return res
         .status(400)
         .json(new ApiResponse("All fields are required", 400));
+    }
+
+    const isPassStrong = isPasswordStrong(password);
+
+    if (!isPassStrong) {
+      return res
+        .status(400)
+        .json(
+          new ApiResponse(
+            "Password must be at least 8 characters long, include one uppercase letter, one lowercase letter, one number, and one special character.",
+            409
+          )
+        );
     }
 
     const existedUser = await User.findOne({

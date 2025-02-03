@@ -19,6 +19,8 @@ export const authenticateUser = async (req, res, next) => {
       userName: decoded.userName,
     });
 
+    console.log(userData);
+
     if (!userData) {
       return res
         .status(401)

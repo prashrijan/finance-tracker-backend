@@ -1,14 +1,13 @@
-@endpoint = http://localhost:8080/api/v1
-
+@endpoint = https://finance-tracker-backend-js79.onrender.com/api/v1
 
 GET {{endpoint}}/transactions
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3RAdGVzdC5jb20iLCJ1c2VyTmFtZSI6InRlc3QiLCJpYXQiOjE3MzgwMTgyMjAsImV4cCI6MTczODEwNDYyMH0.4jpE2uWoWGCeG6DgP2UPR1hiNsp0rlLW-JwPx8ANZks
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InNwcmFzaHJpamFuQGdtYWlsLmNvbSIsInVzZXJOYW1lIjoicmVhZCIsImlhdCI6MTczODU0OTg5NSwiZXhwIjoxNzM4NjM2Mjk1fQ.Hw3ihVHQv-rng5t2jUbG6wjKqeZnE3A0GavPOw-VgOI
 
 ###
 
 POST {{endpoint}}/transactions/add
 Content-Type: application/json
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InNocmVzdGhhcHJhc2hyaWphbkBnbWFpbC5jb20iLCJ1c2VyTmFtZSI6InByYXNocmlqYW4iLCJpYXQiOjE3MzgxMjUxNjgsImV4cCI6MTczODIxMTU2OH0.4lqOVzjTphnywd914XCyscMiqAhZrtaRHnan1tyOA00
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InNwcmFzaHJpamFuQGdtYWlsLmNvbSIsInVzZXJOYW1lIjoicmVhZCIsImlhdCI6MTczODU0OTg5NSwiZXhwIjoxNzM4NjM2Mjk1fQ.Hw3ihVHQv-rng5t2jUbG6wjKqeZnE3A0GavPOw-VgOI
 
 {
     "type" : "Expense",
@@ -21,12 +20,12 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InNocmVzdGhhcHJh
 ###
 
 DELETE {{endpoint}}/transactions/delete/678f19a7cad3b240c4622f3d
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3RAdGVzdC5jb20iLCJ1c2VyTmFtZSI6InRlc3QiLCJpYXQiOjE3MzgwMTgyMjAsImV4cCI6MTczODEwNDYyMH0.4jpE2uWoWGCeG6DgP2UPR1hiNsp0rlLW-JwPx8ANZks
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InNwcmFzaHJpamFuQGdtYWlsLmNvbSIsInVzZXJOYW1lIjoicmVhZCIsImlhdCI6MTczODU0OTg5NSwiZXhwIjoxNzM4NjM2Mjk1fQ.Hw3ihVHQv-rng5t2jUbG6wjKqeZnE3A0GavPOw-VgOI
 
 ###
 DELETE {{endpoint}}/transactions/delete
 Content-Type: application/json
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3RAdGVzdC5jb20iLCJ1c2VyTmFtZSI6InRlc3QiLCJpYXQiOjE3MzgwMTgyMjAsImV4cCI6MTczODEwNDYyMH0.4jpE2uWoWGCeG6DgP2UPR1hiNsp0rlLW-JwPx8ANZks
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InNwcmFzaHJpamFuQGdtYWlsLmNvbSIsInVzZXJOYW1lIjoicmVhZCIsImlhdCI6MTczODU0OTg5NSwiZXhwIjoxNzM4NjM2Mjk1fQ.Hw3ihVHQv-rng5t2jUbG6wjKqeZnE3A0GavPOw-VgOI
 
 {
     "transactions" : [

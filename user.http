@@ -1,4 +1,4 @@
-@endpoint = https://finance-tracker-backend-js79.onrender.com/api/v1
+@endpoint = http://localhost:8080/api/v1
 GET  {{endpoint}}/users
 Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3RAdGVzdC5jb20iLCJ1c2VyTmFtZSI6InRlc3QiLCJpYXQiOjE3MzgwMjU1NTcsImV4cCI6MTczODExMTk1N30.slvza58EzuWQ1Vufqn1nshTi4luyP2EjHbiVUaoWtAM
 
@@ -11,7 +11,8 @@ Content-Type: application/json
 {
     "email" : "sprashrijan@gmail.com",
     "userName" : "read",
-    "password" : "test"
+    "password" : "test123@A",
+    "confirmPassword" : "test123@A"
 }
 
 ###

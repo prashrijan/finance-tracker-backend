@@ -4,7 +4,7 @@ import { isPasswordStrong } from "../utils/passwordStrength.js";
 
 const registerUser = async (req, res) => {
   try {
-    const { email, userName, password } = req.body;
+    const { email, userName, password, confirmPassword } = req.body;
 
     if ([email, userName, password].some((input) => input?.trim() === "")) {
       return res
@@ -22,6 +22,14 @@ const registerUser = async (req, res) => {
             "Password must be at least 8 characters long, include one uppercase letter, one lowercase letter, one number, and one special character.",
             409
           )
+        );
+    }
+
+    if (password !== confirmPassword) {
+      return res
+        .status(400)
+        .json(
+          new ApiResponse("Password and confirm password must match.", 409)
         );
     }
 
